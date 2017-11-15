@@ -1,0 +1,26 @@
+language: php
+
+php: 5.6
+
+before_install:
+  - composer self-update
+
+install:
+  - composer install --no-dev --prefer-dist --optimize-autoloader
+
+script:
+  - echo ""
+
+before_deploy:
+  - zip -r authskautis conf images lang vendor action.php auth.php LICENSE plugin.info.txt README README.md
+
+deploy:
+  provider: releases
+  api_key:
+    secure: #TODO
+  file: authskautis.zip
+  skip_cleanup: true
+  on:
+    repo: skaut/skautis-dokuwiki
+    branch: master
+    tags: true
