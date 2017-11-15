@@ -71,8 +71,8 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
                 $USERINFO['pass'] = $pass;
 
                 //save data in session
-                $_SERVER['REMOTE_USER'] = $uinfo['name'];
-                $_SESSION[DOKU_COOKIE]['authskautis']['user'] = $uinfo['name'];
+                $_SERVER['REMOTE_USER'] = $user;
+                $_SESSION[DOKU_COOKIE]['authskautis']['user'] = $user;
                 $_SESSION[DOKU_COOKIE]['authskautis']['info'] = $USERINFO;
 
                 return true;
@@ -98,8 +98,9 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
                 $userData = $skautIs->user->userDetail();
                 $token = $skautIs->getUser()->getLoginId();
                 $person = $skautIs->org->PersonDetail(['ID_Login' => $token, 'ID' => $userData->ID_Person]);
+                $skautIsUserName = $userData->UserName;
                 $skautIsEmail = $person->Email;
-                $skautIsUsername = $person->FirstName . ' ' . $person->LastName;
+                $skautIsDisplayName = $person->FirstName . ' ' . $person->LastName;
 
                 $login = 'skautis'.$userData->ID;
                 $udata = $this->getUserData($login);
@@ -113,22 +114,22 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
                             $grps = explode(' ', $this->getConf('default_groups'));
                         }
                         //create user
-                        $this->createUser($login, md5(rand().$login), $skautIsUsername, $skautIsEmail, $grps);
+                        $this->createUser($login, md5(rand().$login), $skautIsDisplayName, $skautIsEmail, $grps);
                         $udata = $this->getUserData($login);
-                    } elseif ($udata['name'] != $skautIsUsername || $udata['email'] != $skautIsEmail) {
+                    } elseif ($udata['name'] != $skautIsDisplayName || $udata['email'] != $skautIsEmail) {
                         //update user
-                        $this->modifyUser($login, ['name'=>$skautIsUsername, 'email'=>$skautIsEmail]);
+                        $this->modifyUser($login, ['name'=>$skautIsDisplayName, 'email'=>$skautIsEmail]);
                     }
                 }
 
                 if ($this->isUserValid($login)){
                     //set user info
                     $USERINFO['pass'] = "";
-                    $USERINFO['name'] = $skautIsUsername;
+                    $USERINFO['name'] = $skautIsDisplayName;
                     $USERINFO['mail'] = $skautIsEmail;
                     $USERINFO['grps'] = $udata['grps'];
                     $USERINFO['is_skautis'] = true;
-                    $_SERVER['REMOTE_USER'] = $skautIsUsername;
+                    $_SERVER['REMOTE_USER'] = $skautIsUserName;
 
                     //save user info in session
                     $_SESSION[DOKU_COOKIE]['authskautis']['user'] = $_SERVER['REMOTE_USER'];
