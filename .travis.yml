@@ -17,7 +17,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: #TODO
+    secure: DT6qfSlb6dVuXZKMnPLddyheWDsAargfBD2KfchL3uIy86c7iJBeovXXZxdXQDslDAMfllJqCsTeuX0arfUXLJYwT54aNysBqdrnz9TZcsovcM3E
   file: authskautis.zip
   skip_cleanup: true
   on:
