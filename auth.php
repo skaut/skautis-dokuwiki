@@ -10,7 +10,7 @@
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 global $conf;
 // define cookie and session id, append server port when securecookie is configured

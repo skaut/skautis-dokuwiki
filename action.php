@@ -2,7 +2,7 @@
 
 if (!defined('DOKU_INC')) die();
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 
 class action_plugin_authskautis extends DokuWiki_Action_Plugin {
