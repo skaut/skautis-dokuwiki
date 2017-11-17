@@ -27,8 +27,6 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
     public function __construct() {
         global $config_cascade;
         parent::__construct(); // for compatibility
-        $this->url = Skautis\Config::URL_PRODUCTION . 'Login/?appid=';
-        $this->testUrl = Skautis\Config::URL_TEST . 'Login/?appid=';
 
         $this->success = true;
 
