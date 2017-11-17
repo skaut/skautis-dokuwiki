@@ -7,9 +7,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 class action_plugin_authskautis extends DokuWiki_Action_Plugin {
 
-    protected $url;
-    protected $testUrl;
-
     /**
      * Registers the event handlers.
      */
@@ -50,12 +47,9 @@ class action_plugin_authskautis extends DokuWiki_Action_Plugin {
         $skautIs = Skautis\Skautis::getInstance($skautIsAppId, $skautIsTestmode);
 
         if($skautIsAppId!=''){
-            $auth_url = $skautIs->getLoginUrl();
-
-            $a_style = "width: 200px;margin:0 auto;color: #666666;cursor: pointer;text-decoration: none !important;display: block;padding-bottom:1.4em;";//-moz-linear-gradient(center top , #F8F8F8, #ECECEC)
-            $div_style = "float:left;line-height: 30px;background-color: #F8F8F8;border: 1px solid #C6C6C6;border-radius: 2px 2px 2px 2px;padding: 0px 5px 0px 5px;position: relative;";
-            echo "<a href='$auth_url' style='$a_style' title='".$this->getLang('enter_skautis')."'><div style=\"$div_style\">".$this->getLang('enter_skautis')."</div>";
-            echo "<div style='clear: both;'></div></a>";
+            $loginUrl = $skautIs->getLoginUrl();
+            $buttonText = $this->getLang('enter_skautis');
+            echo "<a href='$loginUrl' class='login-button' title='$buttonText'><span class='login-button-logo'>&#x00ac;</span> $buttonText</a>";
         }
     }
 }
