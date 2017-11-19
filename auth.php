@@ -86,7 +86,7 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
         }
 
         //$sticky ? $sticky = true : $sticky = false; //sanity check
-        if (!empty($_POST)){
+        if (!empty($_POST) && isset($_POST['skautIS_Token'])){
             $skautIsAllowedAddUser = $this->getConf('skautis_allowed_add_user');
 
             $this->skautIs->setLoginData($_POST);
