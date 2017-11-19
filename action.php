@@ -47,9 +47,10 @@ class action_plugin_authskautis extends DokuWiki_Action_Plugin {
     function hook_html_loginform_output(&$event, $param) {
         $skautIsAppId = $this->getConf('skautis_app_id');
         $skautIsTestmode = $this->getConf('skautis_test_mode');
-        $skautIs = Skautis\Skautis::getInstance($skautIsAppId, $skautIsTestmode);
 
-        if($skautIsAppId!=''){
+        if($skautIsAppId){
+            $skautIs = Skautis\Skautis::getInstance($skautIsAppId, $skautIsTestmode);
+
             $auth_url = $skautIs->getLoginUrl();
 
             $a_style = "width: 200px;margin:0 auto;color: #666666;cursor: pointer;text-decoration: none !important;display: block;padding-bottom:1.4em;";//-moz-linear-gradient(center top , #F8F8F8, #ECECEC)
