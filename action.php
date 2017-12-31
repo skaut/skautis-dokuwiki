@@ -44,12 +44,12 @@ class action_plugin_authskautis extends DokuWiki_Action_Plugin {
     function hook_html_loginform_output(&$event, $param) {
         $skautIsAppId = $this->getConf('skautis_app_id');
         $skautIsTestmode = $this->getConf('skautis_test_mode');
-        $skautIs = Skautis\Skautis::getInstance($skautIsAppId, $skautIsTestmode);
 
         if($skautIsAppId!=''){
             $loginUrl = $skautIs->getLoginUrl();
             $buttonText = $this->getLang('enter_skautis');
             echo "<a href='$loginUrl' class='login-button' title='$buttonText'><span class='login-button-logo'>&#x00ac;</span> $buttonText</a>";
+
         }
     }
 }

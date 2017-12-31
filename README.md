@@ -9,6 +9,8 @@ Plugin pro přihlášení do DokuWiki přes skautIS
 - Vaše stránka musí mít schválený přístup ke skautISu.
 
   * [Formulář pro povolené aplikace](http://ws.skautis.cz/zadost)
+  * URL po přihlášení: \<URL aplikace\>/doku.php/start?do=login
+  * URL po odhlášení: \<URL aplikace\>/doku.php/start
 
 - Po instalaci musí být nastaven (zadáno APP_ID)
 

@@ -33,6 +33,10 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
         $this->cando['addUser']     = true; // can Users be created?
         $this->cando['external']    = true; // does the module do external auth checking?
         $this->cando['logout']      = true; // can the user logout again? (eg. not possible with HTTP auth)
+
+        $skautIsAppId = $this->getConf('skautis_app_id');
+        $skautIsTestmode = $this->getConf('skautis_test_mode');
+        $this->skautIs = $skautIsAppId ? Skautis\Skautis::getInstance($skautIsAppId, $skautIsTestmode) : NULL;
     }
 
     /**
@@ -82,20 +86,16 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
         }
 
         //$sticky ? $sticky = true : $sticky = false; //sanity check
-        if (!empty($_POST)){
-
-            $skautIsAppId = $this->getConf('skautis_app_id');
-            $skautIsTestmode = $this->getConf('skautis_test_mode');
+        if (!empty($_POST) && isset($_POST['skautIS_Token'])){
             $skautIsAllowedAddUser = $this->getConf('skautis_allowed_add_user');
-            $skautIs = Skautis\Skautis::getInstance($skautIsAppId,$skautIsTestmode);
-            $skautIs->setLoginData($_POST);
 
-            $skautIsUser = $skautIs->getUser();
+            $this->skautIs->setLoginData($_POST);
+            $skautIsUser = $this->skautIs->getUser();
 
             if ($skautIsUser->isLoggedIn(true)) {
-                $userData = $skautIs->user->userDetail();
-                $token = $skautIs->getUser()->getLoginId();
-                $person = $skautIs->org->PersonDetail(['ID_Login' => $token, 'ID' => $userData->ID_Person]);
+                $userData = $this->skautIs->user->userDetail();
+                $token = $this->skautIs->getUser()->getLoginId();
+                $person = $this->skautIs->org->PersonDetail(['ID_Login' => $token, 'ID' => $userData->ID_Person]);
                 $skautIsEmail = $person->Email;
                 $skautIsUsername = $person->FirstName . ' ' . $person->LastName;
 
@@ -155,8 +155,15 @@ class auth_plugin_authskautis extends auth_plugin_authplain {
     }
 
     function logOff(){
+        $isSkautIs = $_SESSION[DOKU_COOKIE]['authskautis']['info']['is_skautis'];
+
         unset($_SESSION[DOKU_COOKIE]['authskautis']['user']);
         unset($_SESSION[DOKU_COOKIE]['authskautis']['info']);
+
+        if ($isSkautIs) {
+            header("Location: " . $this->skautIs->getLogoutUrl());
+            exit();
+        }
     }
 
     function isUserValid($login){
