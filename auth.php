@@ -21,6 +21,8 @@ if (!defined('AUTHSKAUTIS_COOKIE')){
 
 class auth_plugin_authskautis extends auth_plugin_authplain {
 
+    /** @var \Skautis\Skautis */
+    public $skautIs;
     /**
      * Constructor.
      */
