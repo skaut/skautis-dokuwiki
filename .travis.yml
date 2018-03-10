@@ -17,7 +17,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: DT6qfSlb6dVuXZKMnPLddyheWDsAargfBD2KfchL3uIy86c7iJBeovXXZxdXQDslDAMfllJqCsTeuX0arfUXLJYwT54aNysBqdrnz9TZcsovcM3E
+    secure: DT6qfSlb6dVuXZKMnPLddyheWDsAargfBD2KfchL3uIy86c7iJBeovXXZxdXQDslDAMfllJqCsTeuX0arfUXLJYwT54aNysBqdrnz9TZcsovcM3E+g8YCWjIrbVMG46wXC2cz8DMrhXhHlg36BzNrEaWIe+ov5gp6EgafWyhK2U=
   file: authskautis.zip
   skip_cleanup: true
   on:
