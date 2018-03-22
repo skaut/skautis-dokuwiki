@@ -1,3 +1,4 @@
 Seznam toho, jaké služby je potřeba povolit ve skautISu. https://test-is.skaut.cz/JunakWebservice/
 
-U každé další verze bude napsané, jen to co potřebuje navíc oproti předchozí verzi.
+**OrganizationUnit -> PersonDetail** - Načíst detail osoby  
+**UserManagement -> UserDetail** - Načíst detail uživatele
