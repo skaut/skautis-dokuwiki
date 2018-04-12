@@ -1,3 +1,5 @@
-DokuWiku plugin pro možnost přihlašování a registrace do DokuWiki přes skautIS
+#DokuWiki skautIS plugin
 
-Nápověda k pluginu je na https://napoveda.skaut.cz/skautis/skautis-dokuwiki
+Plugin pro přihlašování do DokuWiku pomocí [skautIS](https://is.skaut.cz) účtu.
+
+Nápověda k pluginu: [https://napoveda.skaut.cz/skautis/skautis-dokuwiki](https://napoveda.skaut.cz/skautis/skautis-dokuwiki).
