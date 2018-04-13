@@ -1,4 +1,4 @@
-#DokuWiki skautIS plugin
+# DokuWiki skautIS plugin
 
 Plugin pro přihlašování do DokuWiku pomocí [skautIS](https://is.skaut.cz) účtu.
 
