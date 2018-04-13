@@ -12,7 +12,7 @@ script:
   - echo ""
 
 before_deploy:
-  - zip -r authskautis conf images lang vendor action.php auth.php LICENSE plugin.info.txt README README.md
+  - zip -r authskautis conf images lang vendor action.php auth.php LICENSE plugin.info.txt README.md style.css
 
 deploy:
   provider: releases
