@@ -1,16 +1,5 @@
-@font-face {
-    font-family: 'skautbold';
-    src: url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.eot');
-    src: url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.eot? #iefix') format('embedded-opentype');
-    src: url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.woff') format('woff'),
-    url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.otf') format('opentype'),
-    url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.svg#skautbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .login-button {
-    margin: 0 auto 10px auto;
+    margin: 0 auto;
     padding: 6px 12px;
     line-height: 40px;
     color: #ffffff !important;
@@ -21,6 +10,5 @@
 }
 
 .login-button-logo {
-    font-family: skautbold, sans-serif;
-    font-weight: normal;
+    margin-bottom: -2px;
 }
