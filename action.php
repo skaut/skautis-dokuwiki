@@ -51,8 +51,14 @@ class action_plugin_authskautis extends DokuWiki_Action_Plugin
         if ($skautIsAppId != '') {
             $skautIs = Skautis\Skautis::getInstance($skautIsAppId, $skautIsTestmode);
             $loginUrl = $skautIs->getLoginUrl();
+            $buttonIcon = "
+                <svg xmlns='http://www.w3.org/2000/svg' width='17' height='17' class='login-button-logo' xmlns:xlink='http://www.w3.org/1999/xlink'>
+                    <svg viewBox='0 0 763 800'>
+                        <image width='763' height='800' xlink:href='" . DOKU_URL . "lib/plugins/authskautis/images/skautis.svg' />
+                    </svg>
+                </svg>";
             $buttonText = $this->getLang('enter_skautis');
-            echo "<a href='$loginUrl' class='login-button' title='$buttonText'><span class='login-button-logo'>&#x00ac;</span> $buttonText</a>";
+            echo "<a href='$loginUrl' class='login-button' title='$buttonText'>$buttonIcon $buttonText</a><br><br>";
         }
     }
 }
