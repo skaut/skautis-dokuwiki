@@ -107,7 +107,7 @@ class auth_plugin_authskautis extends auth_plugin_authplain
 
                 $name = $skautIsFirstName . ' ' . $skautIsLastName . ($skautIsNickName ? ' - ' . $skautIsNickName : '');
 
-                $login = normalizer_normalize($skautIsUserName);
+                $login = iconv('UTF-8', 'ASCII//TRANSLIT', $skautIsUserName);
                 $login = preg_replace('/[^a-zA-Z0-9_]/', '', $login);
                 $login = $login . $userDetail->ID;
 
