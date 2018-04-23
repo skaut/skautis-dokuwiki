@@ -107,9 +107,7 @@ class auth_plugin_authskautis extends auth_plugin_authplain
 
                 $name = $skautIsFirstName . ' ' . $skautIsLastName . ($skautIsNickName ? ' - ' . $skautIsNickName : '');
 
-                $login = iconv('UTF-8', 'ASCII//TRANSLIT', $skautIsUserName);
-                $login = preg_replace('/[^a-zA-Z0-9_]/', '', $login);
-                $login = $login . $userDetail->ID;
+                $login = $this->cleanUserName($skautIsUserName, $userDetail->ID);
 
                 $udata = $this->getUserData($login);
 
@@ -180,5 +178,12 @@ class auth_plugin_authskautis extends auth_plugin_authplain
     function isUserValid($login)
     {
         return isset($this->users[$login]) ? TRUE : FALSE;
+    }
+
+    function cleanUserName($skautIsUserName, $skautIsUserId)
+    {
+        $login = iconv('UTF-8', 'ASCII//TRANSLIT', $skautIsUserName);
+        $login = strtolower(preg_replace('/[^a-zA-Z0-9_]/', '', $login));
+        return $login . $skautIsUserId;
     }
 }
